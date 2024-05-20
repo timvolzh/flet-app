@@ -78,11 +78,11 @@ class Char:
         self.persuasion = persuasion
         self.animal_handling = animal_handling
 
-    def from_dict(self, char=None):
+    def from_dict(self, char):
         data = char["data"]
 
         # Stats
-        stats = char["stats"]
+        stats = data["stats"]
         self.strength = int(stats["str"]["score"])
         self.constitution = int(stats["con"]["score"])
         self.dexterity = int(stats["dex"]["score"])
@@ -91,7 +91,7 @@ class Char:
         self.charisma = int(stats["cha"]["score"])
 
         # Prof Bonus
-        prof = char["saves"]
+        prof = data["saves"]
         self.prof_strength = prof["str"]["isProf"]
         self.prof_constitution = prof["con"]["isProf"]
         self.prof_dexterity = prof["dex"]["isProf"]
@@ -105,7 +105,7 @@ class Char:
         self.PROFICIENCY_BONUS = ''
 
         # Skills
-        skills = char["skills"]
+        skills = data["skills"]
         self.acrobatics = skills["acrobatics"]
         self.investigation = skills["investigation"]
         self.athletics = skills["athletics"]
@@ -114,7 +114,7 @@ class Char:
         self.performance = skills["performance"]
         self.intimidation = skills["intimidation"]
         self.history = skills["history"]
-        self.sleight_of_hand = skills["sleight_of_hand"]
+        self.sleight_of_hand = skills["sleight of hand"]
         self.arcana = skills["arcana"]
         self.medicine = skills["medicine"]
         self.deception = skills["deception"]
@@ -123,7 +123,7 @@ class Char:
         self.religion = skills["religion"]
         self.stealth = skills["stealth"]
         self.persuasion = skills["persuasion"]
-        self.animal_handling = skills["animal_handling"]
+        self.animal_handling = skills["animal handling"]
 
         pass
 
