@@ -1,0 +1,816 @@
+import flet as ft
+from classes.Char import Char
+from classes.CharList import CharList
+import json
+
+c = Char(strength=25)
+
+#print(c.strength)
+#print(c.stealth)
+
+d = {"data": {"name": "Andrew", "surname": "Header"}}
+
+
+def c(data):
+    data = data["data"]
+    name = data["name"]
+    return name
+
+
+
+#print(c(d))
+
+#______________________________
+test_char = {
+  "data": {
+    "jsonType": "character",
+    "template": "default",
+    "name": {
+      "value": ""
+    },
+    "hiddenName": "Буйный Союз_998142885",
+    "info": {
+      "charClass": {
+        "name": "charClass",
+        "label": "класс и уровень",
+        "value": "Воин"
+      },
+      "level": {
+        "name": "level",
+        "label": "уровень",
+        "value": 5
+      },
+      "background": {
+        "name": "background",
+        "label": "предыстория",
+        "value": ""
+      },
+      "playerName": {
+        "name": "playerName",
+        "label": "имя игрока",
+        "value": "Рык"
+      },
+      "race": {
+        "name": "race",
+        "label": "раса",
+        "value": "Кенку"
+      },
+      "alignment": {
+        "name": "alignment",
+        "label": "мировоззрение",
+        "value": ""
+      },
+      "experience": {
+        "name": "experience",
+        "label": "опыт",
+        "value": ""
+      }
+    },
+    "subInfo": {
+      "age": {
+        "name": "age",
+        "label": "возраст",
+        "value": ""
+      },
+      "height": {
+        "name": "height",
+        "label": "рост",
+        "value": ""
+      },
+      "weight": {
+        "name": "weight",
+        "label": "вес",
+        "value": ""
+      },
+      "eyes": {
+        "name": "eyes",
+        "label": "глаза",
+        "value": ""
+      },
+      "skin": {
+        "name": "skin",
+        "label": "кожа",
+        "value": ""
+      },
+      "hair": {
+        "name": "hair",
+        "label": "волосы",
+        "value": ""
+      }
+    },
+    "spellsInfo": {
+      "base": {
+        "name": "base",
+        "label": "Базовая характеристика заклинаний",
+        "value": ""
+      },
+      "save": {
+        "name": "save",
+        "label": "Сложность спасброска",
+        "value": ""
+      },
+      "mod": {
+        "name": "mod",
+        "label": "Бонус атаки заклинанием",
+        "value": ""
+      }
+    },
+    "spells": {},
+    "proficiency": 3,
+    "stats": {
+      "str": {
+        "name": "str",
+        "label": "Сила",
+        "score": 8,
+        "modifier": None
+      },
+      "dex": {
+        "name": "dex",
+        "label": "Ловкость",
+        "score": 18,
+        "modifier": -5
+      },
+      "con": {
+        "name": "con",
+        "label": "Телосложение",
+        "score": 16,
+        "modifier": -5
+      },
+      "int": {
+        "name": "int",
+        "label": "Интеллект",
+        "score": 8,
+        "modifier": None
+      },
+      "wis": {
+        "name": "wis",
+        "label": "Мудрость",
+        "score": 11,
+        "modifier": -5
+      },
+      "cha": {
+        "name": "cha",
+        "label": "Харизма",
+        "score": 14,
+        "modifier": -5
+      }
+    },
+    "saves": {
+      "str": {
+        "name": "str",
+        "isProf": False
+      },
+      "dex": {
+        "name": "dex",
+        "isProf": True
+      },
+      "con": {
+        "name": "con",
+        "isProf": False,
+        "customModifier": None
+      },
+      "int": {
+        "name": "int",
+        "isProf": False
+      },
+      "wis": {
+        "name": "wis",
+        "isProf": False
+      },
+      "cha": {
+        "name": "cha",
+        "isProf": True
+      }
+    },
+    "skills": {
+      "acrobatics": {
+        "baseStat": "dex",
+        "name": "acrobatics",
+        "label": "Акробатика",
+        "isProf": 0
+      },
+      "investigation": {
+        "baseStat": "int",
+        "name": "investigation",
+        "label": "Анализ"
+      },
+      "athletics": {
+        "baseStat": "str",
+        "name": "athletics",
+        "label": "Атлетика"
+      },
+      "perception": {
+        "baseStat": "wis",
+        "name": "perception",
+        "label": "Восприятие"
+      },
+      "survival": {
+        "baseStat": "wis",
+        "name": "survival",
+        "label": "Выживание"
+      },
+      "performance": {
+        "baseStat": "cha",
+        "name": "performance",
+        "label": "Выступление",
+        "isProf": 1
+      },
+      "intimidation": {
+        "baseStat": "cha",
+        "name": "intimidation",
+        "label": "Запугивание",
+        "isProf": 1
+      },
+      "history": {
+        "baseStat": "int",
+        "name": "history",
+        "label": "История"
+      },
+      "sleight of hand": {
+        "baseStat": "dex",
+        "name": "sleight of hand",
+        "label": "Ловкость рук"
+      },
+      "arcana": {
+        "baseStat": "int",
+        "name": "arcana",
+        "label": "Магия"
+      },
+      "medicine": {
+        "baseStat": "wis",
+        "name": "medicine",
+        "label": "Медицина"
+      },
+      "deception": {
+        "baseStat": "cha",
+        "name": "deception",
+        "label": "Обман",
+        "isProf": 1
+      },
+      "nature": {
+        "baseStat": "int",
+        "name": "nature",
+        "label": "Природа"
+      },
+      "insight": {
+        "baseStat": "wis",
+        "name": "insight",
+        "label": "Проницательность"
+      },
+      "religion": {
+        "baseStat": "int",
+        "name": "religion",
+        "label": "Религия"
+      },
+      "stealth": {
+        "baseStat": "dex",
+        "name": "stealth",
+        "label": "Скрытность",
+        "isProf": 1
+      },
+      "persuasion": {
+        "baseStat": "cha",
+        "name": "persuasion",
+        "label": "Убеждение"
+      },
+      "animal handling": {
+        "baseStat": "wis",
+        "name": "animal handling",
+        "label": "Уход за животными"
+      }
+    },
+    "vitality": {
+      "hp-dice-current": {
+        "value": 5
+      },
+      "hp-dice-multi": {},
+      "hp-max": {
+        "value": 44
+      },
+      "hit-die": {
+        "value": "к10"
+      },
+      "speed": {
+        "value": "30"
+      },
+      "ac": {
+        "value": 20
+      },
+      "isDying": True
+    },
+    "weaponsList": [
+      {
+        "id": "weapon-1672215258160",
+        "name": {
+          "value": "Длинный лук +1"
+        },
+        "mod": {
+          "value": "+0"
+        },
+        "dmg": {
+          "value": "1к8+4+1+2"
+        },
+        "ability": "dex",
+        "isProf": True,
+        "modBonus": {
+          "value": 3
+        }
+      }
+    ],
+    "weapons": {},
+    "text": {
+      "prof": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Все доспехи, щиты"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Простое оружие, воинское оружие"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "attacks": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        }
+      },
+      "traits": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "Стрельба"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Вы получаете бонус +2 к броску атаки, когда атакуете дальнобойным оружием."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Второе дыхание "
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Вы обладаете ограниченным источником выносливости, которым можете воспользоваться, чтобы уберечь себя. В свой ход вы можете бонусным действием восстановить хиты в размере 1к10 + ваш уровень воина ООО"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Всплеск действий"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Вы получаете возможность на мгновение преодолеть обычные возможности. В свой ход вы можете совершить одно дополнительное действие помимо обычного и бонусного действий. ООО"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "Точная атака "
+                  },
+                  {
+                    "type": "text",
+                    "text": "Если вы совершаете бросок атаки оружием по существу, вы можете потратить одну кость превосходства, чтобы добавить её к броску. Вы можете использовать этот приём до или после совершения броска атаки, но до применения эффектов атаки."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "Атака с финтом."
+                  },
+                  {
+                    "type": "text",
+                    "text": " Вы можете в свой ход потратить одну кость превосходства и бонусным действием совершить финт, выбрав в качестве цели одно существо в пределах 5 футов. Следующий бросок атаки по этому существу в этом ходу вы совершаете с преимуществом. Если атака попадает, добавьте кость превосходства к броску урона этой атаки. Оба преимущества пропадают, если вы не используете их в том же ходу, в котором получили их."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Если вы в свой ход совершаете действие Атака, вы можете совершить две атаки вместо одной"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Вы овладели дальнобойным оружием и можете совершать выстрелы, которые другие считали невозможными. Вы получаете следующие преимущества:"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Совершение атаки в пределах максимальной дистанции не вызывает "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "помеху"
+                  },
+                  {
+                    "type": "text",
+                    "text": " к броску "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "italic"
+                      }
+                    ],
+                    "text": "дальнобойных атак"
+                  },
+                  {
+                    "type": "text",
+                    "text": "."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Ваши "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "italic"
+                      }
+                    ],
+                    "text": "дальнобойные атаки"
+                  },
+                  {
+                    "type": "text",
+                    "text": " игнорируют "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://ttg.club/screens/Half_cover",
+                          "target": "_blank",
+                          "class": None
+                        }
+                      }
+                    ],
+                    "text": "укрытие на половину"
+                  },
+                  {
+                    "type": "text",
+                    "text": " и "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://ttg.club/screens/Three-quarters_cover",
+                          "target": "_blank",
+                          "class": None
+                        }
+                      }
+                    ],
+                    "text": "укрытие на три четверти"
+                  },
+                  {
+                    "type": "text",
+                    "text": "."
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Перед совершением "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "italic"
+                      }
+                    ],
+                    "text": "атаки дальнобойным оружием"
+                  },
+                  {
+                    "type": "text",
+                    "text": ", которым вы владеете, вы можете принять штраф "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "−5"
+                  },
+                  {
+                    "type": "text",
+                    "text": " к броску атаки. Если такая атака попадает, вы добавляете "
+                  },
+                  {
+                    "type": "text",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "text": "+10"
+                  },
+                  {
+                    "type": "text",
+                    "text": " к урону от этой атаки."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "size": 7
+      },
+      "equipment": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Кости превосходства 4к8"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "кольчуга"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "мифрильный доспех"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Наручи стрельбы из лука"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "вереевка"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "шест"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        }
+      },
+      "personality": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Перед нападением всегда нужно всё разведывать."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "ideals": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Если я вижу что-то, что мне нравится, я это возьму"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "bonds": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Скоро меня сочтут достойным "
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "flaws": {
+        "value": {
+          "data": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Отсутствие своих целей и идеалов"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "coins": {
+      "gp": {
+        "value": 30
+      }
+    },
+    "resources": {},
+    "bonusesSkills": {},
+    "bonusesStats": {},
+    "conditions": [],
+    "id": "63ac0e81a8a5e655faca53a8"
+  },
+  "jsonType": "character",
+  "version": "2"
+}
+
+front_char = Char()
+front_char.from_dict(test_char)
+
+#ft.app(target=CharList.build)
+
